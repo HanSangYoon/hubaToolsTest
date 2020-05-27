@@ -1,0 +1,12 @@
+version: '2'
+services:
+  jenkins_cli:
+    image: 'hubadocker:5000/jenkins/jenkins_default:1.2'
+    restart: always
+    volumes:
+      - '/home/fabric/docker-jenkins/jobs:/var/jenkins_home/jobs'
+    ports:
+      - "28080:8080"
+      - "50000:50000"
+    user: root
+    container_name: jenkins

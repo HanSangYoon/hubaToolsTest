@@ -1,0 +1,533 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <org.biouno.unochoice.ChoiceParameter plugin="uno-choice@2.1">
+          <name>UCP_COUNT</name>
+          <description>Select a UCP node&apos;s count. &lt;br&gt;
+If UCP_COUNT is set, HUBA_TYPE is automatically assigned.&lt;br&gt;
+  - UCP_COUNT is 1 : HUBA_TYPE is not set. we will not proceed with the deployment testing.&lt;br&gt;
+  - UCP_COUNT is 3 : HUBA_TYPE is &quot;N3&quot;.&lt;br&gt;
+  - UCP_COUNT is 5 : HUBA_TYPE is &quot;N5&quot;.&lt;br&gt;
+  - UCP_COUNT is 7 : HUBA_TYPE is &quot;N7&quot;.&lt;br&gt;
+&lt;br&gt;</description>
+          <randomName>choice-parameter-17206339880036871</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.61">
+              <script>return[
+&apos;1&apos;,
+&apos;3:selected&apos;,
+&apos;5&apos;,
+&apos;7&apos;,
+&apos;9&apos;
+]</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.61">
+              <script>return[&apos;error&apos;]</script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>huba-installer</projectName>
+          <choiceType>PT_SINGLE_SELECT</choiceType>
+          <filterable>false</filterable>
+          <filterLength>1</filterLength>
+        </org.biouno.unochoice.ChoiceParameter>
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
+          <name>UCP_IP</name>
+          <description>Enter the IP address for each UCP node.
+The IP1 will be the master node, when deployment testing.
+
+</description>
+          <randomName>choice-parameter-17438888473144443</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.61">
+              <script>html_return=&quot;&quot;
+
+switch(UCP_COUNT){
+  case~/.*1.*/:
+    html_return = &quot;&quot;&quot;
+      UCP IP1
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.13\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	&quot;&quot;&quot;
+  break
+  case ~/.*3.*/:
+    html_return = &quot;&quot;&quot;
+	  UCP IP1
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.13\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	  UCP IP2
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.14\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	  UCP IP3
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.15\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	&quot;&quot;&quot;
+   break
+  case~/.*5.*/:
+    html_return = &quot;&quot;&quot;
+	  UCP IP1
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.161\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	  UCP IP2
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.162\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	  UCP IP3
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.163\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	  UCP IP4
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.164\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	  UCP IP5
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.165\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	&quot;&quot;&quot;
+  break
+  case~/.*7.*/:
+    html_return = &quot;&quot;&quot;
+	  UCP IP1
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.161\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	  UCP IP2
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.162\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	  UCP IP3
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.163\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	  UCP IP4
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.164\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	  UCP IP5
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.165\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	  UCP IP6
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.166\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	  UCP IP7
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.167\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	&quot;&quot;&quot;
+  break
+  case~/.*9.*/:
+    html_return = &quot;&quot;&quot;
+	  UCP IP1
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.161\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	  UCP IP2
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.162\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	  UCP IP3
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.163\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	  UCP IP4
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.164\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	  UCP IP5
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.165\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	  UCP IP6
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.166\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	  UCP IP7
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.167\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	  UCP IP8
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.16\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	  UCP IP9
+	  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.17\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+	&quot;&quot;&quot;
+  break
+}
+
+return html_return</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.61">
+              <script>return &quot;&lt;b&gt;Error&lt;/b&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>huba-installer</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>UCP_COUNT</referencedParameters>
+          <choiceType>ET_FORMATTED_HTML</choiceType>
+          <omitValueField>false</omitValueField>
+        </org.biouno.unochoice.DynamicReferenceParameter>
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
+          <name>UCP_IP_NO_WHITESPACE</name>
+          <description></description>
+          <randomName>choice-parameter-17442321893097323</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.61">
+              <script>ucp_ip_no_whitespace=UCP_IP.replaceAll(&quot; &quot;, &quot;&quot;)
+
+html_return=&quot;&lt;input name=\&quot;value\&quot; value=\&quot;&quot;+ ucp_ip_no_whitespace+ &quot;\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;
+
+return html_return</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.61">
+              <script>return &quot;&lt;b&gt;Error&lt;/b&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>huba-installer</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>UCP_IP</referencedParameters>
+          <choiceType>ET_FORMATTED_HIDDEN_HTML</choiceType>
+          <omitValueField>false</omitValueField>
+        </org.biouno.unochoice.DynamicReferenceParameter>
+        <org.biouno.unochoice.ChoiceParameter plugin="uno-choice@2.1">
+          <name>PACKAGE_REPOSITORY</name>
+          <description>Select the package repository to be used for installation.&lt;br&gt;
+&lt;br&gt;</description>
+          <randomName>choice-parameter-17453091544862261</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.61">
+              <script>return[
+&apos;Jenkins Archive&apos;,
+&apos;HUBA Stable Suite&apos;
+]</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.61">
+              <script>return &quot;&lt;b&gt;Error&lt;/b&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>huba-installer</projectName>
+          <choiceType>PT_SINGLE_SELECT</choiceType>
+          <filterable>false</filterable>
+          <filterLength>1</filterLength>
+        </org.biouno.unochoice.ChoiceParameter>
+        <org.biouno.unochoice.CascadeChoiceParameter plugin="uno-choice@2.1">
+          <name>HUBA_IMAGES_PACKAGE</name>
+          <description>Select the huba-images package file.</description>
+          <randomName>choice-parameter-17453463098857555</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.61">
+              <script>package_name=&quot;huba-images&quot;
+
+switch(PACKAGE_REPOSITORY){
+  case~/.*Jenkins Archive.*/:
+    find_path=&apos;/HUBA-REPO/jenkins/jenkins_home/jobs/&apos; +package_name+ &apos;/builds&apos;
+  break
+  case ~/.*HUBA Stable Suite.*/:
+    find_path=&apos;/HUBA-REPO/jenkins/huba-repository/stable_huba-suite/&apos; + package_name
+  break
+}
+
+package_list=[]
+new File(find_path).eachFileRecurse {
+    if (it.name.startsWith(package_name) &amp;&amp; it.name.endsWith(&quot;.tar&quot;)) {
+        package_list&lt;&lt; it.name
+    }
+}
+
+package_list.sort()
+return package_list.reverse()</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.61">
+              <script>return &quot;&lt;b&gt;Error&lt;/b&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>huba-installer</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>PACKAGE_REPOSITORY</referencedParameters>
+          <choiceType>PT_SINGLE_SELECT</choiceType>
+          <filterable>false</filterable>
+          <filterLength>1</filterLength>
+        </org.biouno.unochoice.CascadeChoiceParameter>
+        <org.biouno.unochoice.CascadeChoiceParameter plugin="uno-choice@2.1">
+          <name>HUBA_TOOLS_PACKAGE</name>
+          <description>Select the huba-tools package file.</description>
+          <randomName>choice-parameter-17458029855624779</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.61">
+              <script>package_name=&quot;huba-tools&quot;
+
+switch(PACKAGE_REPOSITORY){
+  case~/.*Jenkins Archive.*/:
+    find_path=&apos;/HUBA-REPO/jenkins/jenkins_home/jobs/&apos; +package_name+ &apos;/builds&apos;
+  break
+  case ~/.*HUBA Stable Suite.*/:
+    find_path=&apos;/HUBA-REPO/jenkins/huba-repository/stable_huba-suite/&apos; + package_name
+  break
+}
+
+package_list=[]
+new File(find_path).eachFileRecurse {
+    if (it.name.startsWith(package_name) &amp;&amp; it.name.endsWith(&quot;.tar&quot;)) {
+        package_list&lt;&lt; it.name
+    }
+}
+
+package_list.sort()
+return package_list.reverse()</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.61">
+              <script>return &quot;&lt;b&gt;Error&lt;/b&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>huba-installer</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>PACKAGE_REPOSITORY</referencedParameters>
+          <choiceType>PT_SINGLE_SELECT</choiceType>
+          <filterable>false</filterable>
+          <filterLength>1</filterLength>
+        </org.biouno.unochoice.CascadeChoiceParameter>
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
+          <name>HUBA_IMAGES_PACKAGE_PATH</name>
+          <description></description>
+          <randomName>choice-parameter-17459951027266152</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.61">
+              <script>package_name=&quot;huba-images&quot;
+
+switch(PACKAGE_REPOSITORY){
+  case~/.*Jenkins Archive.*/:
+    find_path=&apos;/HUBA-REPO/jenkins/jenkins_home/jobs/&apos; +package_name+ &apos;/builds&apos;
+  break
+  case ~/.*HUBA Stable Suite.*/:
+    find_path=&apos;/HUBA-REPO/jenkins/huba-repository/stable_huba-suite/&apos; + package_name
+  break
+}
+
+huba_images_package_path=&quot;&quot;
+new File(find_path).eachFileRecurse {
+    if (it.name.equals(HUBA_IMAGES_PACKAGE)) {
+        if (it.absolutePath.contains(&quot;lastStableBuild&quot;) ||
+            it.absolutePath.contains(&quot;lastSuccessfulBuild&quot;) ||
+            it.absolutePath.contains(&quot;lastFailedBuild&quot;) ||
+            it.absolutePath.contains(&quot;lastUnstableBuild&quot;) ||
+            it.absolutePath.contains(&quot;lastUnsuccessfulBuild&quot;)) {
+            // we does not include the link files;
+        } else {
+            huba_images_package_path = it.absolutePath
+        }
+    }
+}
+
+html_return=&quot;&lt;input name=\&quot;value\&quot; value=\&quot;&quot;+huba_images_package_path+ &quot;\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;
+
+return html_return</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.61">
+              <script>return &quot;&lt;b&gt;Error&lt;/b&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>huba-installer</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>HUBA_IMAGES_PACKAGE, PACKAGE_REPOSITORY</referencedParameters>
+          <choiceType>ET_FORMATTED_HIDDEN_HTML</choiceType>
+          <omitValueField>false</omitValueField>
+        </org.biouno.unochoice.DynamicReferenceParameter>
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
+          <name>HUBA_TOOLS_PACKAGE_PATH</name>
+          <description></description>
+          <randomName>choice-parameter-17463087217704534</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.61">
+              <script>package_name=&quot;huba-tools&quot;
+
+switch(PACKAGE_REPOSITORY){
+  case~/.*Jenkins Archive.*/:
+    find_path=&apos;/HUBA-REPO/jenkins/jenkins_home/jobs/&apos; +package_name+ &apos;/builds&apos;
+  break
+  case ~/.*HUBA Stable Suite.*/:
+    find_path=&apos;/HUBA-REPO/jenkins/huba-repository/stable_huba-suite/&apos; + package_name
+  break
+}
+
+huba_tools_package_path=&quot;&quot;
+new File(find_path).eachFileRecurse {
+    if (it.name.equals(HUBA_TOOLS_PACKAGE)) {
+        if (it.absolutePath.contains(&quot;lastStableBuild&quot;) ||
+            it.absolutePath.contains(&quot;lastSuccessfulBuild&quot;) ||
+            it.absolutePath.contains(&quot;lastFailedBuild&quot;) ||
+            it.absolutePath.contains(&quot;lastUnstableBuild&quot;) ||
+            it.absolutePath.contains(&quot;lastUnsuccessfulBuild&quot;)) {
+            // we does not include the link files;
+        } else {
+            huba_tools_package_path= it.absolutePath
+        }
+    }
+}
+
+html_return=&quot;&lt;input name=\&quot;value\&quot; value=\&quot;&quot;+huba_tools_package_path+ &quot;\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;&quot;
+
+return html_return</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.61">
+              <script>return &quot;&lt;b&gt;Error&lt;/b&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>huba-installer</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters>HUBA_TOOLS_PACKAGE, PACKAGE_REPOSITORY</referencedParameters>
+          <choiceType>ET_FORMATTED_HIDDEN_HTML</choiceType>
+          <omitValueField>false</omitValueField>
+        </org.biouno.unochoice.DynamicReferenceParameter>
+        <org.biouno.unochoice.ChoiceParameter plugin="uno-choice@2.1">
+          <name>CONSENSUS_TYPE</name>
+          <description>Select a consensus type that is implementation for achieving consensus on the strict ordering of transaction between ordering service nodes. &lt;br&gt;
+  - etcdraft : Raft is a crash fault tolerant (CFT) ordering service based on an implementation of Raft protocol in etcd. &lt;br&gt;
+  - kafka : Apache Kafka is a CFT implementation that uses a “leader and follower” node configuration.&lt;br&gt;</description>
+          <randomName>choice-parameter-25141533612408690</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.61">
+              <script>return[
+&apos;etcdraft:selected&apos;,
+&apos;kafka&apos;
+]</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.61">
+              <script>return[&apos;error&apos;]</script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>huba-installer</projectName>
+          <choiceType>PT_SINGLE_SELECT</choiceType>
+          <filterable>false</filterable>
+          <filterLength>1</filterLength>
+        </org.biouno.unochoice.ChoiceParameter>
+        <org.biouno.unochoice.DynamicReferenceParameter plugin="uno-choice@2.1">
+          <name>ALERT_MNG_CONFIG</name>
+          <description>Input the alert manager configuration.
+- SMTP HOST            : The smtp host address(IP:Port) that used by the alert manager to send the alert e-mail.
+- EMAIL FROM           : The mail sender e-mail address that used by the alert manager to send the alert e-mail.
+- REPEAT INTERVAL : The alert e-mail&apos;s repeat interval. When the alert condition is triggered, the alert manager send repeatedly.</description>
+          <randomName>choice-parameter-24103006578396836</randomName>
+          <visibleItemCount>1</visibleItemCount>
+          <script class="org.biouno.unochoice.model.GroovyScript">
+            <secureScript plugin="script-security@1.61">
+              <script>html_return = &quot;&quot;&quot;
+  SMTP HOST
+  &lt;input name=\&quot;value\&quot; value=\&quot;150.12.23.13:25\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+  EMAIL FROM
+  &lt;input name=\&quot;value\&quot; value=\&quot;huba@huba.com\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+  REPEAT INTERVAL
+  &lt;input name=\&quot;value\&quot; value=\&quot;5m\&quot; class=\&quot;setting-input\&quot; type=\&quot;text\&quot;&gt;
+&quot;&quot;&quot;
+
+return html_return</script>
+              <sandbox>false</sandbox>
+            </secureScript>
+            <secureFallbackScript plugin="script-security@1.61">
+              <script>return &quot;&lt;b&gt;Error&lt;/b&gt;&quot;</script>
+              <sandbox>false</sandbox>
+            </secureFallbackScript>
+          </script>
+          <projectName>huba-installer</projectName>
+          <parameters class="linked-hash-map"/>
+          <referencedParameters></referencedParameters>
+          <choiceType>ET_FORMATTED_HTML</choiceType>
+          <omitValueField>false</omitValueField>
+        </org.biouno.unochoice.DynamicReferenceParameter>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>FIREWALL_ACTIVE</name>
+          <description>default true</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>true</string>
+              <string>false</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>echo &quot;################################################&quot;
+echo &quot;UCP_COUNT=${UCP_COUNT}&quot;
+#echo &quot;UCP_IP=${UCP_IP}&quot;
+UCP_IP_NO_WHITESPACE=${UCP_IP_NO_WHITESPACE:0:-1}
+echo &quot;UCP_IP_NO_WHITESPACE=${UCP_IP_NO_WHITESPACE}&quot;
+echo &quot;&quot;
+
+echo &quot;PACKAGE_REPOSITORY=${PACKAGE_REPOSITORY}&quot;
+echo &quot;&quot;
+
+#echo &quot;HUBA_IMAGES_PACKAGE=${HUBA_IMAGES_PACKAGE}&quot;
+HUBA_IMAGES_PACKAGE_PATH=${HUBA_IMAGES_PACKAGE_PATH:0:-1}
+echo &quot;HUBA_IMAGES_PACKAGE_PATH=${HUBA_IMAGES_PACKAGE_PATH}&quot;
+echo &quot;&quot;
+
+#echo &quot;HUBA_TOOLS_PACKAGE=${HUBA_TOOLS_PACKAGE}&quot;
+HUBA_TOOLS_PACKAGE_PATH=${HUBA_TOOLS_PACKAGE_PATH:0:-1}
+echo &quot;HUBA_TOOLS_PACKAGE_PATH=${HUBA_TOOLS_PACKAGE_PATH}&quot;
+echo &quot;&quot;
+
+echo &quot;CONSENSUS_TYPE=${CONSENSUS_TYPE}&quot;
+
+echo &quot;ALERT_MNG_CONFIG=${ALERT_MNG_CONFIG}&quot;
+IFS_RESTORE=$IFS
+IFS=&apos;,&apos; read -r -a ALERT_MNG_CONFIG_ARRAY &lt;&lt;&lt; &quot;${ALERT_MNG_CONFIG}&quot;
+IFS=$IFS_RESTORE
+
+echo &quot;&quot;
+echo &quot;FIREWALL_ACTIVE = ${FIREWALL_ACTIVE}&quot;
+echo &quot;&quot;
+
+ALERT_MNG_CONFIG_SMTP=${ALERT_MNG_CONFIG_ARRAY[0]}
+ALERT_MNG_CONFIG_EMAIL_FROM=${ALERT_MNG_CONFIG_ARRAY[1]}
+ALERT_MNG_CONFIG_REPEAT_INTERVAL=${ALERT_MNG_CONFIG_ARRAY[2]}
+echo &quot;ALERT_MNG_CONFIG_SMTP=$ALERT_MNG_CONFIG_SMTP&quot;
+echo &quot;ALERT_MNG_CONFIG_EMAIL_FROM=$ALERT_MNG_CONFIG_EMAIL_FROM&quot;
+echo &quot;ALERT_MNG_CONFIG_REPEAT_INTERVAL=$ALERT_MNG_CONFIG_REPEAT_INTERVAL&quot;
+echo &quot;&quot;
+
+echo &quot;################################################&quot;
+
+
+/HUBA-REPO/jenkins/jenkins-build-scripts/huba-installer.sh --ucp-count ${UCP_COUNT}\
+                                                           --ucp-ip ${UCP_IP_NO_WHITESPACE}\
+                                                           --huba-images ${HUBA_IMAGES_PACKAGE_PATH}\
+                                                           --huba-tools ${HUBA_TOOLS_PACKAGE_PATH}\
+                                                           --consensus-type ${CONSENSUS_TYPE}\
+                                                           --alertmng-smtp ${ALERT_MNG_CONFIG_SMTP}\
+                                                           --alertmng-emailfrom ${ALERT_MNG_CONFIG_EMAIL_FROM}\
+                                                           --alertmng-repeatinterval ${ALERT_MNG_CONFIG_REPEAT_INTERVAL}\
+                                                           --firewall-active ${FIREWALL_ACTIVE} </command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <hudson.plugins.ws__cleanup.WsCleanup plugin="ws-cleanup@0.37">
+      <patterns class="empty-list"/>
+      <deleteDirs>false</deleteDirs>
+      <skipWhenFailed>false</skipWhenFailed>
+      <cleanWhenSuccess>true</cleanWhenSuccess>
+      <cleanWhenUnstable>true</cleanWhenUnstable>
+      <cleanWhenFailure>true</cleanWhenFailure>
+      <cleanWhenNotBuilt>true</cleanWhenNotBuilt>
+      <cleanWhenAborted>true</cleanWhenAborted>
+      <notFailBuild>false</notFailBuild>
+      <cleanupMatrixParent>false</cleanupMatrixParent>
+      <externalDelete></externalDelete>
+      <disableDeferredWipeout>false</disableDeferredWipeout>
+    </hudson.plugins.ws__cleanup.WsCleanup>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.37">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+      <disableDeferredWipeout>false</disableDeferredWipeout>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.10"/>
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@2.0.1">
+      <template>#${BUILD_NUMBER}_${PACKAGE_REPOSITORY}</template>
+      <descriptionTemplate></descriptionTemplate>
+      <runAtStart>true</runAtStart>
+      <runAtEnd>true</runAtEnd>
+    </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
+  </buildWrappers>
+</project>

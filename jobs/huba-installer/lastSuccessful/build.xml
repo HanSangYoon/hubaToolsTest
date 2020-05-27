@@ -1,0 +1,116 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<build>
+  <actions>
+    <hudson.model.ParametersAction>
+      <safeParameters class="sorted-set"/>
+      <parameters>
+        <hudson.model.StringParameterValue>
+          <name>UCP_COUNT</name>
+          <description>Select a UCP node&apos;s count. &lt;br&gt;
+If UCP_COUNT is set, HUBA_TYPE is automatically assigned.&lt;br&gt;
+  - UCP_COUNT is 1 : HUBA_TYPE is not set. we will not proceed with the deployment testing.&lt;br&gt;
+  - UCP_COUNT is 3 : HUBA_TYPE is &quot;N3&quot;.&lt;br&gt;
+  - UCP_COUNT is 5 : HUBA_TYPE is &quot;N5&quot;.&lt;br&gt;
+  - UCP_COUNT is 7 : HUBA_TYPE is &quot;N7&quot;.&lt;br&gt;
+&lt;br&gt;</description>
+          <value>3</value>
+        </hudson.model.StringParameterValue>
+        <hudson.model.StringParameterValue>
+          <name>UCP_IP</name>
+          <description>Enter the IP address for each UCP node.
+The IP1 will be the master node, when deployment testing.
+
+</description>
+          <value>150.12.23.18,150.12.23.19,150.12.23.20,</value>
+        </hudson.model.StringParameterValue>
+        <hudson.model.StringParameterValue>
+          <name>UCP_IP_NO_WHITESPACE</name>
+          <description></description>
+          <value>150.12.23.18,150.12.23.19,150.12.23.20,</value>
+        </hudson.model.StringParameterValue>
+        <hudson.model.StringParameterValue>
+          <name>PACKAGE_REPOSITORY</name>
+          <description>Select the package repository to be used for installation.&lt;br&gt;
+&lt;br&gt;</description>
+          <value>Jenkins Archive</value>
+        </hudson.model.StringParameterValue>
+        <hudson.model.StringParameterValue>
+          <name>HUBA_IMAGES_PACKAGE</name>
+          <description>Select the huba-images package file.</description>
+          <value>huba-images_Develop_v1.4.4_9.99_202003091302.tar</value>
+        </hudson.model.StringParameterValue>
+        <hudson.model.StringParameterValue>
+          <name>HUBA_TOOLS_PACKAGE</name>
+          <description>Select the huba-tools package file.</description>
+          <value>huba-tools_Develop_v1.4.4_9.99_202005251328.tar</value>
+        </hudson.model.StringParameterValue>
+        <hudson.model.StringParameterValue>
+          <name>HUBA_IMAGES_PACKAGE_PATH</name>
+          <description></description>
+          <value>/HUBA-REPO/jenkins/jenkins_home/jobs/huba-images/builds/71/archive/huba-images_Develop_v1.4.4_9.99_202003091302.tar,</value>
+        </hudson.model.StringParameterValue>
+        <hudson.model.StringParameterValue>
+          <name>HUBA_TOOLS_PACKAGE_PATH</name>
+          <description></description>
+          <value>/HUBA-REPO/jenkins/jenkins_home/jobs/huba-tools/builds/122/archive/huba-tools_Develop_v1.4.4_9.99_202005251328.tar,</value>
+        </hudson.model.StringParameterValue>
+        <hudson.model.StringParameterValue>
+          <name>CONSENSUS_TYPE</name>
+          <description>Select a consensus type that is implementation for achieving consensus on the strict ordering of transaction between ordering service nodes. &lt;br&gt;
+  - etcdraft : Raft is a crash fault tolerant (CFT) ordering service based on an implementation of Raft protocol in etcd. &lt;br&gt;
+  - kafka : Apache Kafka is a CFT implementation that uses a “leader and follower” node configuration.&lt;br&gt;</description>
+          <value>etcdraft</value>
+        </hudson.model.StringParameterValue>
+        <hudson.model.StringParameterValue>
+          <name>ALERT_MNG_CONFIG</name>
+          <description>Input the alert manager configuration.
+- SMTP HOST            : The smtp host address(IP:Port) that used by the alert manager to send the alert e-mail.
+- EMAIL FROM           : The mail sender e-mail address that used by the alert manager to send the alert e-mail.
+- REPEAT INTERVAL : The alert e-mail&apos;s repeat interval. When the alert condition is triggered, the alert manager send repeatedly.</description>
+          <value>150.12.23.18:25,huba@huba.com,5m,</value>
+        </hudson.model.StringParameterValue>
+        <hudson.model.StringParameterValue>
+          <name>FIREWALL_ACTIVE</name>
+          <description>default true</description>
+          <value>true</value>
+        </hudson.model.StringParameterValue>
+      </parameters>
+      <parameterDefinitionNames>
+        <string>UCP_COUNT</string>
+        <string>UCP_IP</string>
+        <string>UCP_IP_NO_WHITESPACE</string>
+        <string>PACKAGE_REPOSITORY</string>
+        <string>HUBA_IMAGES_PACKAGE</string>
+        <string>HUBA_TOOLS_PACKAGE</string>
+        <string>HUBA_IMAGES_PACKAGE_PATH</string>
+        <string>HUBA_TOOLS_PACKAGE_PATH</string>
+        <string>CONSENSUS_TYPE</string>
+        <string>ALERT_MNG_CONFIG</string>
+        <string>FIREWALL_ACTIVE</string>
+      </parameterDefinitionNames>
+    </hudson.model.ParametersAction>
+    <hudson.model.CauseAction>
+      <causeBag class="linked-hash-map">
+        <entry>
+          <hudson.model.Cause_-UserIdCause>
+            <userId>jenkins</userId>
+          </hudson.model.Cause_-UserIdCause>
+          <int>1</int>
+        </entry>
+      </causeBag>
+    </hudson.model.CauseAction>
+  </actions>
+  <queueId>2</queueId>
+  <timestamp>1590381418748</timestamp>
+  <startTime>1590381418753</startTime>
+  <result>SUCCESS</result>
+  <displayName>#391_Jenkins Archive</displayName>
+  <duration>2607507</duration>
+  <charset>UTF-8</charset>
+  <keepLog>false</keepLog>
+  <builtOn></builtOn>
+  <workspace>/HUBA-REPO/jenkins/jenkins_home/workspace/huba-installer</workspace>
+  <hudsonVersion>2.176.2</hudsonVersion>
+  <scm class="hudson.scm.NullChangeLogParser"/>
+  <culprits class="com.google.common.collect.EmptyImmutableSortedSet"/>
+</build>
